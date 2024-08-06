@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>{% block title %}TurnosApp{% endblock %}</title>
+
+  {% load static %}
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}" />
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+</head>
+<body>
+  <div class="hero_area">
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="{% url 'inicio' %}">
+            <img src="{% static 'images/logo.png' %}" alt="" />
+            <span>
+              Gestión de Turnos
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'inicio' %}">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-link">
+                  <a href="{% url 'listar_turnos' %}">Turnos</a><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-link">
+                  <a href="{% url 'listar_pacientes' %}">Pacientes</a><span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+    {% block content %}
+    <!-- hero section -->
+    <section class="hero_section">
+      <div class="hero_detail">
+        <h1>
+          TurnosApp
+        </h1>
+        <h3>
+          Tu mejor asistente para la gestión de turnos
+        </h3>
+      </div>
+    </section>
+    <!-- end hero section -->
+  </div>
+  <!-- end hero area -->
+
+  <!-- content section -->
+  <main>
+    <!-- Calendar section -->
+    <section class="client_section layout_padding">
+      <div class="d-flex justify-content-center">
+        <h2 class="custom_heading">Calendario</h2>
+      </div>
+      <div class="calendar">
+        {% for week in calendar %}
+          <div class="week">
+            <h3>Semana {{ forloop.counter }}</h3>
+            {% for day in week %}
+              <div class="day">
+                <div class="header">{{ day|date:"Y-m-d" }}</div>
+                {% with day as current_day %}
+                  {% for turno in turnos %}
+                    {% if turno.fecha_hora|date:"Y-m-d" == current_day|date:"Y-m-d" %}
+                      <p>{{ turno.fecha_hora|date:"H:i" }} - {{ turno.paciente.nombre }}: {{ turno.descripcion }}</p>
+                    {% endif %}
+                  {% endfor %}
+                {% endwith %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+    <!-- end calendar section -->
+  </main>
+
+  <!-- info section -->
+  <section class="info_section layout_padding">
+    <div class="container layout_padding-top layout_padding2-bottom">
+      <div class="info_items">
+        <div class="item">
+          <div class="detail-box">
+            <h2>
+              Soporte técnico
+            </h2>
+          </div>
+        </div>
+        <a href="">
+          <div class="item">
+            <div class="img-box box-3">
+              <img src="{% static 'images/envelope-white.png' %}" alt="" />
+            </div>
+            <div class="detail-box">
+              <p>
+                alejopardini@gmail.com
+              </p>
+            </div>
+          </div>
+        </a>
+        <a href="">
+          <div class="item">
+            <div class="img-box box-2">
+              <img src="{% static 'images/telephone-white.png' %}" alt="" />
+            </div>
+            <div class="detail-box">
+              <p>
+                whatsapp button
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- end info_section -->
+  {% endblock %}
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy; 2024 All Rights Reserved By
+      <a href="https://github.com/alejopardini">Alejo Pardini</a>
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <!-- Load JavaScript files -->
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/owl.carousel.min.js' %}"></script>
+</body>
+</html>

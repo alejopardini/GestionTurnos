@@ -1,0 +1,12 @@
+{% extends 'gestion_turnos/inicio.html' %}
+
+{% block title %}Crear Paciente{% endblock %}
+
+{% block content %}
+<h1>Crear Paciente</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}
