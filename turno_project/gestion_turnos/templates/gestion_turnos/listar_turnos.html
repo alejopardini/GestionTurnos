@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h1>Lista de Turnos</h1>
+    <a href="{% url 'crear_turno' %}" class="btn btn-primary mb-3">Crear Turno</a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Paciente</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for turno in turnos %}
+          <tr>
+            <td>{{ turno.paciente.nombre }}</td>
+            <td>{{ turno.fecha }}</td>
+            <td>{{ turno.hora }}</td>
+            <td>
+              <a href="{% url 'editar_turno' turno.id %}" class="btn btn-secondary btn-sm">Editar</a>
+              <a href="{% url 'borrar_turno' turno.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este turno?')">Eliminar</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

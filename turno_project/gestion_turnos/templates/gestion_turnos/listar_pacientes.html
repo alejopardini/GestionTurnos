@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Pacientes{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h1>Lista de Pacientes</h1>
+    <a href="{% url 'crear_paciente' %}" class="btn btn-primary mb-3">Crear Paciente</a>
+
+    {% if messages %}
+      <div class="alert alert-info">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <ul class="list-group">
+      {% for paciente in pacientes %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          {{ paciente.nombre }} - Edad: {{ paciente.edad }} años - Última Consulta: {{ paciente.ultima_consulta }}
+        </div>
+        <div>
+          <a href="{% url 'detalle_paciente' paciente.id %}" class="btn btn-info btn-sm mr-2">Detalles</a>
+          <a href="{% url 'editar_paciente' paciente.id %}" class="btn btn-secondary btn-sm mr-2">Actualizar</a>
+          <a href="{% url 'borrar_paciente' paciente.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este paciente?')">Borrar</a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

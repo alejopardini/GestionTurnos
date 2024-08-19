@@ -1,0 +1,338 @@
+@font-face {
+  font-family: "Ethnocentric";
+  src: url("../fonts/ethnocentric/ethnocentric rg.ttf") format("ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Ethnocentric";
+  src: url("../fonts/ethnocentric/ethnocentric rg it.ttf") format("ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("../fonts/ethnocentric/Poppins-Regular.ttf") format("ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("../fonts/ethnocentric/Poppins-Bold.ttf") format("ttf");
+  font-weight: bold;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Ethnocentric";
+  align-content: center;
+}
+
+body {
+  font-family: "poppins", sans-serif;
+  color: #101010;
+  background-color: #ffffff;
+}
+
+.layout_padding {
+  padding: 75px 0;
+}
+
+.layout_padding2 {
+  padding: 45px 0;
+}
+
+.layout_padding2-top {
+  padding-top: 45px;
+}
+
+.layout_padding2-bottom {
+  padding-bottom: 45px;
+}
+
+.layout_padding-top {
+  padding-top: 75px;
+}
+
+.layout_padding-bottom {
+  padding-bottom: 75px;
+}
+
+.custom_heading {
+  position: relative;
+}
+
+.custom_heading::before {
+  position: absolute;
+  content: "";
+  left: -45px;
+  width: 37px;
+  height: 32px;
+  
+  background-size: cover;
+}
+/* Estilo para los formularios */
+form {
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*header section*/
+.hero_area {
+  height: 98vh;
+  background-image: url(../images/hero.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.sub_page .hero_area {
+  height: auto;
+}
+
+.hero_area.sub_pages {
+  height: auto;
+}
+
+.header_section .container-fluid {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+
+
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: initial;
+}
+
+.btn,
+.btn:focus {
+  outline: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+
+
+/* Estilo para la navbar */
+.navbar {
+  background-color: #343a40; /* Color de fondo de la navbar */
+}
+
+.navbar-brand img {
+  max-height: 50px; /* Ajusta la altura del logo */
+}
+
+.nav-link {
+  color: #ffffff; /* Color del texto de los enlaces */
+}
+
+.nav-link:hover {
+  color: #d3d3d3; /* Color del texto de los enlaces al pasar el mouse */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,..."); /* Icono del botón de menú, puede personalizarse */
+}
+
+.navbar-nav .nav-item.active .nav-link {
+  font-weight: bold; /* Resalta el enlace activo */
+}
+
+
+/*end header section*/
+
+/*calendar section*/
+/* Estilo para el título del calendario (mes) */
+.fc-header-title {
+  font-family: "Ethnocentric", sans-serif; /* Usa la misma fuente que el texto "Calendario" */
+  font-size: 1.5rem; /* Ajusta el tamaño de la fuente */
+  font-weight: bold; /* Negrita */
+  color: #333; /* Color del texto */
+  text-transform: capitalize; /* Primer letra mayúscula */
+}
+
+/* Estilo para los días de la semana */
+.fc-col-header-cell {
+  font-family: "Poppins", sans-serif; /* Fuente para los encabezados de los días de la semana */
+  font-size: 1rem; /* Tamaño de la fuente */
+  font-weight: bold; /* Negrita */
+  color: #555; /* Color del texto */
+}
+
+/* Estilo para los días del mes */
+.fc-daygrid-day-number {
+  font-family: "Poppins", sans-serif; /* Fuente para los números de los días */
+  font-size: 1rem; /* Tamaño de la fuente */
+  color: #333; /* Color del texto */
+}
+
+/* Resaltar el día actual */
+.fc-day-today {
+  background-color: #00ff00; /* Color de fondo para el día actual */
+  color: #fff; /* Color del texto para el día actual */
+  border-radius: 50%; /* Esquinas redondeadas */
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+}
+
+.week {
+  margin-bottom: 20px;
+}
+
+.day {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.header {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.appointments p {
+  margin: 0;
+  font-size: 14px;
+}
+/*end calendar*/
+
+/* Lista turnos */
+#titulo_lista_turnos {
+  text-align: center;
+  width: 60%;
+  font-size: 30px;
+  color: #555;
+  margin: 0 auto;
+}
+
+#crear_turno_btn {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  font-size: 18px;
+  color: #0066cc;
+  text-decoration: none;
+}
+
+#ttabla_turnos {
+  text-align: center;
+  width: 60%;
+  font-size: 20px;
+  color: #3d3c3c;
+  margin: 0 auto;
+}
+
+#tabla_turnos {
+  text-align: center;
+  width: 60%;
+  font-size: 16px;
+  color: #555;
+  margin: 0 auto;
+}
+
+#tabla_content {
+  text-align: center;
+  width: 60%;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Estilos adicionales para la tabla */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px auto;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+
+.hero_section {
+  text-align: center;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 75%;
+}
+
+.hero_section h1 {
+  font-size: 85px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  
+  justify-content: center;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.hero_section .hero_btn-box a {
+  display: inline-block;
+  padding: 12px 55px;
+  background-color: transparent;
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
+  margin-top: 55px;
+  text-transform: uppercase;
+}
+
+.hero_section .hero_btn-box a:hover {
+  background-color: #ffffff;
+  color: #00ff00;
+}
+
+
+/* footer section*/
+.footer_section {
+  background-color: #ffffff;
+  padding: 20px;
+  font-weight: 500;
+}
+
+.footer_section p {
+  color: #292929;
+  margin: 0;
+  text-align: center;
+}
+
+.footer_section a {
+  color: #292929;
+}
+
+/* end footer section*/
+/*# sourceMappingURL=style.css.map */

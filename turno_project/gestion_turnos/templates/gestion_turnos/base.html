@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>{% block title %}TurnosApp{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .hero_area {
+      background-image: url("{% static 'images/your-background-image.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      flex: 1;
+    }
+    main {
+      padding: 20px;
+      flex: 1;
+    }
+    #calendar {
+      background-color: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+    footer {
+      background-color: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+    }
+    .navbar {
+      background-color: #343a40;
+    }
+    .navbar-brand img {
+      max-height: 50px;
+    }
+    .nav-link {
+      color: #ffffff;
+    }
+    .nav-link:hover {
+      color: #d3d3d3;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,...");
+    }
+    .navbar-nav .nav-item.active .nav-link {
+      font-weight: bold;
+    }
+    .custom_heading {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    /* Estilo para el título del calendario (mes) */
+    .fc-header-title {
+      font-family: "Ethnocentric", sans-serif; /* Usa la misma fuente que el texto "Calendario" */
+      font-size: 1.5rem; /* Ajusta el tamaño de la fuente */
+      font-weight: bold; /* Negrita */
+      color: #333; /* Color del texto */
+      text-transform: capitalize; /* Primer letra mayúscula */
+    }
+
+/* Estilo para los días de la semana */
+    .fc-col-header-cell {
+      font-family: "Poppins", sans-serif; /* Fuente para los encabezados de los días de la semana */
+      font-size: 1rem; /* Tamaño de la fuente */
+      font-weight: bold; /* Negrita */
+      color: #555; /* Color del texto */
+    }
+
+/* Estilo para los días del mes */
+    .fc-daygrid-day-number {
+      font-family: "Poppins", sans-serif; /* Fuente para los números de los días */
+      font-size: 1rem; /* Tamaño de la fuente */
+      color: #333; /* Color del texto */
+    }
+
+/* Resaltar el día actual */
+    .fc-day-today {
+      background-color: #00ff00; /* Color de fondo para el día actual */
+      color: #fff; /* Color del texto para el día actual */
+      border-radius: 50%; /* Esquinas redondeadas */
+    }
+
+    .modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      width: 300px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero_area">
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'listar_turnos' %}">Turnos</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'listar_pacientes' %}">Pacientes</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
+
+  <footer>
+    <section class="container-fluid footer_section">
+      <p>&copy; 2024 All Rights Reserved By <a href="https://github.com/alejopardini">Alejo Pardini</a></p>
+    </section>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        locale: 'es', // Establece el idioma del calendario a español
+        dayCellDidMount: function(info) {
+          if (info.date.getDate() === new Date().getDate() && 
+              info.date.getMonth() === new Date().getMonth() && 
+              info.date.getFullYear() === new Date().getFullYear()) {
+            info.el.classList.add('fc-day-today');
+          }
+        },
+        events: [
+          {% for turno in turnos %}
+          {
+            title: '{{ turno.paciente.nombre }}: {{ turno.descripcion }}',
+            start: '{{ turno.fecha_hora|date:"Y-m-dTH:i:s" }}',
+          },
+          {% endfor %}
+        ],
+        dateClick: function(info) {
+          var dateStr = info.dateStr;
+          var event = calendar.getEvents().find(e => e.startStr.startsWith(dateStr));
+          var content = event ? 
+            `<p><strong>Paciente:</strong> ${event.title}</p><p><strong>Horario:</strong> ${event.start.toLocaleTimeString()}</p>` : 
+            `<p>No hay turnos asignados</p>`;
+          var modal = document.createElement('div');
+          modal.innerHTML = `<div class="modal">
+                                <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                  ${content}
+                                </div>
+                              </div>`;
+          document.body.appendChild(modal);
+          document.querySelector('.close').onclick = function() {
+            document.body.removeChild(modal);
+          };
+        }
+      });
+      calendar.render();
+    });
+  </script>
+</body>
+</html>
